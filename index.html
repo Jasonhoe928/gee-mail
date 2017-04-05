@@ -7,39 +7,41 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
         for (i=0; i<window.geemails.length; i++){
-        //console.log(geemails[i]);
-      /*console.log(window.geemails.subject[i]);*/
-      var createProfiles = document.createElement("div");
-      createProfiles.className = "profiles";
-      main.appendChild(createProfiles);
-      var createDates = document.createElement("div");
-      createDates.className = "dates";
-      createDates.innerHTML = window.geemails[i].date;
-      createProfiles.appendChild(createDates);
-     
-     var createSender = document.createElement("div");
-     createSender.className = "senders";
-     createSender.innerHTML = window.geemails[i].sender;
-     createProfiles.appendChild(createSender);
+          //console.log(geemails[i]);
+          /*console.log(window.geemails.subject[i]);*/
+          var createProfiles = document.createElement("div");
+          createProfiles.className = "profiles";
+          main.appendChild(createProfiles);
 
-     var createSub = document.createElement("div");
-     createSub.className = "subjects";
-     createSub.innerHTML = window.geemails[i].subject;
-     createProfiles.appendChild(createSub);
+          var createDates = document.createElement("div");
+          createDates.className = "dates";
+          createDates.innerHTML = window.geemails[i].date;
+          createProfiles.appendChild(createDates);
 
-     var createBody = document.createElement("div");
-     createBody.className = "bodies";
-     createBody.innerHTML = window.geemails[i].body;
-     createProfiles.appendChild(createBody);
-      }
+          var createSender = document.createElement("div");
+          createSender.className = "senders";
+          createSender.innerHTML = window.geemails[i].sender;
+          createProfiles.appendChild(createSender);
+
+          var createSub = document.createElement("div");
+          createSub.className = "subjects";
+          createSub.innerHTML = window.geemails[i].subject;
+          createProfiles.appendChild(createSub);
+
+          var createBody = document.createElement("div");
+          createBody.className = "bodies";
+          createBody.innerHTML = window.geemails[i].body;
+          createProfiles.appendChild(createBody);
+        }
 
       var profileShowHide = document.getElementsByClassName("profiles");
 
-      for(var i = 0; i<profileShowHide.length; i++){
-        profileShowHide[i].addEventListener("click", showHide);
+      for(var j = 0; j<profileShowHide.length; j++){
+        profileShowHide[j].addEventListener("click", showHide);
       }
 
       function showHide(){
+        console.log("**", this);
         var hideMessage = this.querySelectorAll(".bodies")[0];
         if(hideMessage.style.display === "none"){
           hideMessage.style.display = "block";
@@ -49,44 +51,60 @@
       }
 
       var inboxCount = document.createElement("div");
+      inboxCount.id = "countContainer";
       inboxCount.innerHTML = "Messages: "+ profileShowHide.length;
       main.appendChild(inboxCount);
 
 
 
-      var setNewMessage = getNewMessage();
       //console.log(setNewMessage.date);
 
       function addNewMsg(){
+        var setNewMessage = getNewMessage();
+        //console.log('hkgkgjkgjgjg',setNewMessage);
+        var newParent = document.createElement("div");
+        newParent.className = "parentClass";
+        main.appendChild(newParent);
         var newMsgDate = document.createElement("div");
         newMsgDate.className = "newMsgClass";
         newMsgDate.innerHTML = setNewMessage.date;
-        main.appendChild(newMsgDate);
+        newParent.appendChild(newMsgDate);
         var newMsgSub = document.createElement("div");
         newMsgSub.className = "newMsgClass";
         newMsgSub.innerHTML = setNewMessage.subject;
-        main.appendChild(newMsgSub);
+        newParent.appendChild(newMsgSub);
         var newMsgSender = document.createElement("div");
         newMsgSender.className = "newMsgClass";
         newMsgSender.innerHTML = setNewMessage.sender;
-        main.appendChild(newMsgSender);
+        newParent.appendChild(newMsgSender);
         var newMsgBody = document.createElement("div");
         newMsgBody.className = "newMsgBodyClass";
         newMsgBody.innerHTML = setNewMessage.body;
-        main.appendChild(newMsgBody);
+        newParent.appendChild(newMsgBody);
+        
+        var newMsgShowHide = document.getElementsByClassName("parentClass");
+        //console.log(newMsgShowHide.length);
+        for(var k = 0; k<newMsgShowHide.length; k++){
+          //console.log("sfsef", newMsgShowHide.length);
+          newMsgShowHide[k].addEventListener("click", showHideNewMsg)
+        }
+        countContainer.innerHTML = window.geemails.length + newMsgShowHide.length;
       }
       
       setInterval(addNewMsg, 1000);
 
-      var newMsgShowHide = document.getElementsByClassName("newMsgClass");
-      for(i = 0; i<newMsgShowHide.length; i++){
-        newMsgShowHide[i].addEventListener("click", showHideNewMsg)
-      }
-      /*function showHideNewMsg{
-        var 
+      function showHideNewMsg(){
+        var hideMessage = this.querySelectorAll(".newMsgBodyClass")[0];
+        console.log(this);
+        if(hideMessage.style.display === "none"){
+          hideMessage.style.display = "block";
+        }else{
+          hideMessage.style.display = "none";
+        }
+        //console.log("hello");
 
       }
-*/
+
 
 
 

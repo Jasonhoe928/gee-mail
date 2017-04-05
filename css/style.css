@@ -13,3 +13,6 @@ header{
 .subjects{
   color: green;
 }
+.newMsgBodyClass{
+  display: none;
+}

@@ -35,7 +35,7 @@ You will need the following tools to complete this challenge
 		* Subject
 	* When clicking on a message you must provide some method of showing the message for that row.
 
-5. You must show an inbox count somewhere on the page to show the current number of messages in your inbox.
+5. You must show an inbox count somewhere on the page to show the current number of messages in your inbox``1.
 
 6. Set a recurring function to via the JavaScript `setInterval` function that will call our existing `getNewMessage` function that we have created for you that will return a newly created message with the same properties as your previous messages.
 
