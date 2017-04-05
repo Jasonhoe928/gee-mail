@@ -52,12 +52,49 @@
       inboxCount.innerHTML = "Messages: "+ profileShowHide.length;
       main.appendChild(inboxCount);
 
-      var setNewMessage = document.createElement("div");
-      setNewMessage.innerHTML = setInterval(getNewMessage(), 2000);
+
+
+      var setNewMessage = getNewMessage();
+      //console.log(setNewMessage.date);
+
+      function addNewMsg(){
+        var newMsgDate = document.createElement("div");
+        newMsgDate.className = "newMsgClass";
+        newMsgDate.innerHTML = setNewMessage.date;
+        main.appendChild(newMsgDate);
+        var newMsgSub = document.createElement("div");
+        newMsgSub.className = "newMsgClass";
+        newMsgSub.innerHTML = setNewMessage.subject;
+        main.appendChild(newMsgSub);
+        var newMsgSender = document.createElement("div");
+        newMsgSender.className = "newMsgClass";
+        newMsgSender.innerHTML = setNewMessage.sender;
+        main.appendChild(newMsgSender);
+        var newMsgBody = document.createElement("div");
+        newMsgBody.className = "newMsgBodyClass";
+        newMsgBody.innerHTML = setNewMessage.body;
+        main.appendChild(newMsgBody);
+      }
+      
+      setInterval(addNewMsg, 1000);
+
+      var newMsgShowHide = document.getElementsByClassName("newMsgClass");
+      for(i = 0; i<newMsgShowHide.length; i++){
+        newMsgShowHide[i].addEventListener("click", showHideNewMsg)
+      }
+      /*function showHideNewMsg{
+        var 
+
+      }
+*/
+
+
+
+     /* setNewMessage.innerHTML = setInterval(getNewMessage(), 2000);
       main.appendChild(setNewMessage);
-
-      //setInterval(function(){ alert("Hello"); }, 3000);
-
+      console.log(setNewMessage);
+      console.log(getNewMessage());
+*/
 
 
       };
