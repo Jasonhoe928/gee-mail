@@ -6,8 +6,8 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        for (i=0; i<window.geemails.length; i++)
-        console.log(geemails[i]);
+        for (i=0; i<window.geemails.length; i++){
+        //console.log(geemails[i]);
       /*console.log(window.geemails.subject[i]);*/
       var createProfiles = document.createElement("div");
       createProfiles.className = "profiles";
@@ -15,23 +15,49 @@
       var createDates = document.createElement("div");
       createDates.className = "dates";
       createDates.innerHTML = window.geemails[i].date;
-      main.appendChild(createDates);
+      createProfiles.appendChild(createDates);
      
      var createSender = document.createElement("div");
      createSender.className = "senders";
-     createSender.innerHTML = window.geemails.sender;
-     main.appendChild(createSender);
+     createSender.innerHTML = window.geemails[i].sender;
+     createProfiles.appendChild(createSender);
 
      var createSub = document.createElement("div");
      createSub.className = "subjects";
-     createSub.innerHTML = window.geemails.subject;
-     main.appendChild(createSub);
+     createSub.innerHTML = window.geemails[i].subject;
+     createProfiles.appendChild(createSub);
 
      var createBody = document.createElement("div");
      createBody.className = "bodies";
-     createBody.innerHTML = window.geemails.body;
-     main.appendChild(createBody);
-      
+     createBody.innerHTML = window.geemails[i].body;
+     createProfiles.appendChild(createBody);
+      }
+
+      var profileShowHide = document.getElementsByClassName("profiles");
+
+      for(var i = 0; i<profileShowHide.length; i++){
+        profileShowHide[i].addEventListener("click", showHide);
+      }
+
+      function showHide(){
+        var hideMessage = this.querySelectorAll(".bodies")[0];
+        if(hideMessage.style.display === "none"){
+          hideMessage.style.display = "block";
+        }else{
+          hideMessage.style.display = "none";
+        }
+      }
+
+      var inboxCount = document.createElement("div");
+      inboxCount.innerHTML = "Messages: "+ profileShowHide.length;
+      main.appendChild(inboxCount);
+
+      var setNewMessage = document.createElement("div");
+      setNewMessage.innerHTML = setInterval(getNewMessage(), 2000);
+      main.appendChild(setNewMessage);
+
+      //setInterval(function(){ alert("Hello"); }, 3000);
+
 
 
       };
