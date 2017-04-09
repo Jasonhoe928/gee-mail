@@ -2,6 +2,7 @@
 	<head>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two" rel="stylesheet">
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
@@ -32,6 +33,9 @@
           createBody.className = "bodies";
           createBody.innerHTML = window.geemails[i].body;
           createProfiles.appendChild(createBody);
+          var createHR = document.createElement("hr");
+          createHR.className = "hrClass";
+          createProfiles.appendChild(createHR);
         }
 
       var profileShowHide = document.getElementsByClassName("profiles");
@@ -50,14 +54,13 @@
         }
       }
 
-      var inboxCount = document.createElement("div");
-      inboxCount.id = "countContainer";
-      inboxCount.innerHTML = "Messages: "+ profileShowHide.length;
-      main.appendChild(inboxCount);
-
-
-
       //console.log(setNewMessage.date);
+    
+    var inboxCount = document.createElement("div");
+    inboxCount.id = "countContainer";
+    main.appendChild(inboxCount);
+    var createHr2 = document.createElement("hr");
+    main.appendChild(createHr2);
 
       function addNewMsg(){
         var setNewMessage = getNewMessage();
@@ -84,11 +87,12 @@
         
         var newMsgShowHide = document.getElementsByClassName("parentClass");
         //console.log(newMsgShowHide.length);
-        for(var k = 0; k<newMsgShowHide.length; k++){
-          //console.log("sfsef", newMsgShowHide.length);
-          newMsgShowHide[k].addEventListener("click", showHideNewMsg)
+    for(var k = 0; k<newMsgShowHide.length; k++){
+    //console.log("sfsef", newMsgShowHide.length);
+    newMsgShowHide[k].addEventListener("click", showHideNewMsg)
         }
-        countContainer.innerHTML = window.geemails.length + newMsgShowHide.length;
+      
+      countContainer.innerHTML = "New Messages: " + window.geemails.length + newMsgShowHide.length;
       }
       
       setInterval(addNewMsg, 1000);
@@ -104,17 +108,6 @@
         //console.log("hello");
 
       }
-
-
-
-
-     /* setNewMessage.innerHTML = setInterval(getNewMessage(), 2000);
-      main.appendChild(setNewMessage);
-      console.log(setNewMessage);
-      console.log(getNewMessage());
-*/
-
-
       };
     </script>
 	</head>

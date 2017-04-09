@@ -1,18 +1,38 @@
 .bodies{
+  font-size: 20px;
   display: none;
+  font-family: 'Lobster';
 }
 header{
   font-size: 50px;
   color: red;
   text-align: center;
+  font-family: 'Lobster', cursive;
 }
 .senders{
-  font-size: 20px;
+  font-size: 30px;
   color: blue;
+  font-family: 'Lobster', cursive;
 }
 .subjects{
+  font-size: 20px;
   color: green;
+  font-family: 'Lobster Two';
+}
+.dates{
+  font-size: 15px;
+  font-family: 'Lobster';
 }
 .newMsgBodyClass{
   display: none;
+}
+#countContainer{
+font-size: 20px;
+  color: red;
+  font-family: 'Lobster Two';
+}
+.parentClass{
+    font-size: 25px;
+  color: blue;
+  font-family: 'Lobster';
 }
