@@ -53,7 +53,6 @@
           hideMessage.style.display = "none";
         }
       }
-
       //console.log(setNewMessage.date);
     
     var inboxCount = document.createElement("div");
@@ -62,34 +61,34 @@
     var createHr2 = document.createElement("hr");
     main.appendChild(createHr2);
 
-      function addNewMsg(){
-        var setNewMessage = getNewMessage();
+    function addNewMsg(){
+      var setNewMessage = getNewMessage();
         //console.log('hkgkgjkgjgjg',setNewMessage);
-        var newParent = document.createElement("div");
-        newParent.className = "parentClass";
-        main.appendChild(newParent);
-        var newMsgDate = document.createElement("div");
-        newMsgDate.className = "newMsgClass";
-        newMsgDate.innerHTML = setNewMessage.date;
-        newParent.appendChild(newMsgDate);
-        var newMsgSub = document.createElement("div");
-        newMsgSub.className = "newMsgClass";
-        newMsgSub.innerHTML = setNewMessage.subject;
-        newParent.appendChild(newMsgSub);
-        var newMsgSender = document.createElement("div");
-        newMsgSender.className = "newMsgClass";
-        newMsgSender.innerHTML = setNewMessage.sender;
-        newParent.appendChild(newMsgSender);
-        var newMsgBody = document.createElement("div");
-        newMsgBody.className = "newMsgBodyClass";
-        newMsgBody.innerHTML = setNewMessage.body;
-        newParent.appendChild(newMsgBody);
+      var newParent = document.createElement("div");
+      newParent.className = "parentClass";
+      main.appendChild(newParent);
+      var newMsgDate = document.createElement("div");
+      newMsgDate.className = "newMsgClass";
+      newMsgDate.innerHTML = setNewMessage.date;
+      newParent.appendChild(newMsgDate);
+      var newMsgSub = document.createElement("div");
+      newMsgSub.className = "newMsgClass";
+      newMsgSub.innerHTML = setNewMessage.subject;
+      newParent.appendChild(newMsgSub);
+      var newMsgSender = document.createElement("div");
+      newMsgSender.className = "newMsgClass";
+      newMsgSender.innerHTML = setNewMessage.sender;
+      newParent.appendChild(newMsgSender);
+      var newMsgBody = document.createElement("div");
+      newMsgBody.className = "newMsgBodyClass";
+      newMsgBody.innerHTML = setNewMessage.body;
+      newParent.appendChild(newMsgBody);
         
-        var newMsgShowHide = document.getElementsByClassName("parentClass");
+      var newMsgShowHide = document.getElementsByClassName("parentClass");
         //console.log(newMsgShowHide.length);
-    for(var k = 0; k<newMsgShowHide.length; k++){
-    //console.log("sfsef", newMsgShowHide.length);
-    newMsgShowHide[k].addEventListener("click", showHideNewMsg)
+      for(var k = 0; k<newMsgShowHide.length; k++){
+      //console.log("sfsef", newMsgShowHide.length);
+      newMsgShowHide[k].addEventListener("click", showHideNewMsg)
         }
       
       countContainer.innerHTML = "New Messages: " + window.geemails.length + newMsgShowHide.length;

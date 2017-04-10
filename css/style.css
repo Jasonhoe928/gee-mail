@@ -14,10 +14,15 @@ header{
   color: blue;
   font-family: 'Lobster', cursive;
 }
+.senders:hover{
+  background-color: black;
+}
 .subjects{
   font-size: 20px;
   color: green;
   font-family: 'Lobster Two';
+  padding: 1px;
+  margin: 1px;
 }
 .dates{
   font-size: 15px;
