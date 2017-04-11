@@ -55,6 +55,10 @@
       }
       //console.log(setNewMessage.date);
     
+    var msgText = document.createElement("div");
+        msgText.id = "msgTag";
+        msgText.innerHTML = "New messaages: ";
+        main.appendChild(msgText);
     var inboxCount = document.createElement("div");
     inboxCount.id = "countContainer";
     main.appendChild(inboxCount);
@@ -68,36 +72,39 @@
       newParent.className = "parentClass";
       main.appendChild(newParent);
       var newMsgDate = document.createElement("div");
-      newMsgDate.className = "newMsgClass";
+      newMsgDate.className = "dates";
       newMsgDate.innerHTML = setNewMessage.date;
       newParent.appendChild(newMsgDate);
       var newMsgSub = document.createElement("div");
-      newMsgSub.className = "newMsgClass";
+      newMsgSub.className = "subjects";
       newMsgSub.innerHTML = setNewMessage.subject;
       newParent.appendChild(newMsgSub);
       var newMsgSender = document.createElement("div");
-      newMsgSender.className = "newMsgClass";
+      newMsgSender.className = "senders";
       newMsgSender.innerHTML = setNewMessage.sender;
       newParent.appendChild(newMsgSender);
       var newMsgBody = document.createElement("div");
-      newMsgBody.className = "newMsgBodyClass";
+      newMsgBody.className = "bodies";
       newMsgBody.innerHTML = setNewMessage.body;
       newParent.appendChild(newMsgBody);
         
       var newMsgShowHide = document.getElementsByClassName("parentClass");
         //console.log(newMsgShowHide.length);
+      
+
+
       for(var k = 0; k<newMsgShowHide.length; k++){
       //console.log("sfsef", newMsgShowHide.length);
       newMsgShowHide[k].addEventListener("click", showHideNewMsg)
         }
       
-      countContainer.innerHTML = "New Messages: " + window.geemails.length + newMsgShowHide.length;
+      countContainer.innerHTML = window.geemails.length + newMsgShowHide.length;
       }
       
       setInterval(addNewMsg, 1000);
 
       function showHideNewMsg(){
-        var hideMessage = this.querySelectorAll(".newMsgBodyClass")[0];
+        var hideMessage = this.querySelectorAll(".bodies")[0];
         console.log(this);
         if(hideMessage.style.display === "none"){
           hideMessage.style.display = "block";
