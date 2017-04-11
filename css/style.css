@@ -13,9 +13,11 @@ header{
   font-size: 26px;
   color: blue;
   font-family: 'Lobster', cursive;
+  display: inline;
 }
 .senders:hover{
   background-color: black;
+  display: inline;
 }
 .subjects{
   font-size: 20px;
@@ -33,10 +35,15 @@ header{
 .newMsgBodyClass{
   display: none;
 }
-#countContainer{
+.countContainer{
 font-size: 20px;
   color: red;
   font-family: 'Lobster Two';
+  border: 1px solid red;
+  border-radius: 30px;
+  display: inline;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 .parentClass{
     font-size: 20px;
@@ -48,4 +55,13 @@ font-size: 20px;
   font-size: 20px;
   color: red;
   font-family: 'Lobster Two';
+  display: inline;
+}
+.hrClass{
+  width: 270px;
+  margin: 0px;
+}
+.HRtag{
+   width: 270px;
+  margin: 0px;
 }
