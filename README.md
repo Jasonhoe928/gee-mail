@@ -1,3 +1,34 @@
+Revisions from previous Geemail challenge:
+Steps I took to better understanding the code/problems
+    Read docs
+    Playing with app and refamiliarizing myself with requiremnts. 
+    Re-familiarized myself to variable and function names, vocabulary
+    Reading code and seeing how things work together generally
+    Stepping through relevant features using break points and the debugger
+    Researching relevant questions if needed
+    Documenting code to reflect my understanding
+    
+Looked at ways to refactor code
+  Refactored first for loop to utilizing forEach to practice my new understanding of callbacks, higher order functions, and array methods
+  Refactored second loop just like first, however ran into type error when attempting to apply forEach. 
+   This did not work, so I troubleshooted the problem, and looked at docs. 
+   Found that forEach doesn’t work on HTMLCollection objects because HTMLCollection lacks array methods. 
+   Reverted forEach case back to for loop case.
+
+Decided to utilize event delegation in order to set just 1 event listener on the container element, as opposed to each profile child element, concerning the show/hide requirement.
+
+Noticed that using event delegation created even more code, complexity and edge cases for unnecessary performance optimization.
+Weighed concerns based on cost/benefit, and decided readability was my priority.
+
+Realized that I was iterating over all newly created messages and adding an eventListener to every single one, 
+every time setInterval callback was invoked. 
+
+Instead, added 1 eventListener to newly created message, cutting unnecessary code wasting resources.
+
+Realized that I had 2 identical functions which toggled show/hide of messages, just with 2 different names. 
+Deleted the latter, and reused the former as the callback to click eventListener.
+
+
 # GeeMail 
 
 GeeMail is a coding exercise meant to simulate an e-mail web application inbox.

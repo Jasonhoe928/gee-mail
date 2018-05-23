@@ -7,38 +7,45 @@
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        for (i=0; i<window.geemails.length; i++){
-          //console.log(geemails[i]);
-          /*console.log(window.geemails.subject[i]);*/
-          var createProfiles = document.createElement("div");
-          createProfiles.className = "profiles";
-          main.appendChild(createProfiles);
 
-          var createDates = document.createElement("div");
-          createDates.className = "dates";
-          createDates.innerHTML = window.geemails[i].date;
-          createProfiles.appendChild(createDates);
+        //creates all profiles with classes and appends all to main
+        //replaced for loop with forEach()
+          geemails.forEach(function createProfile (email){
 
-          var createSender = document.createElement("div");
-          createSender.className = "senders";
-          createSender.innerHTML = window.geemails[i].sender;
-          createProfiles.appendChild(createSender);
+            var createProfiles = document.createElement("div");
+            createProfiles.className = "profiles";
+            main.appendChild(createProfiles);
 
-          var createSub = document.createElement("div");
-          createSub.className = "subjects";
-          createSub.innerHTML = window.geemails[i].subject;
-          createProfiles.appendChild(createSub);
+            var createDates = document.createElement("div");
+            createDates.className = "dates";
+            createDates.innerHTML = email.date;
+            createProfiles.appendChild(createDates);
 
-          var createBody = document.createElement("div");
-          createBody.className = "bodies";
-          createBody.innerHTML = window.geemails[i].body;
-          createProfiles.appendChild(createBody);
-          var createHR = document.createElement("hr");
-          createHR.className = "hrClass";
-          createProfiles.appendChild(createHR);
-        }
+            var createSender = document.createElement("div");
+            createSender.className = "senders";
+            createSender.innerHTML = email.sender;
+            createProfiles.appendChild(createSender);
 
+            var createSub = document.createElement("div");
+            createSub.className = "subjects";
+            createSub.innerHTML = email.subject;
+            createProfiles.appendChild(createSub);
+
+            var createBody = document.createElement("div");
+            createBody.className = "bodies";
+            createBody.innerHTML = email.body;
+            createProfiles.appendChild(createBody);
+            
+            var createHR = document.createElement("hr");
+            createHR.className = "hrClass";
+            createProfiles.appendChild(createHR);
+          })
+      
+      //
+      //refactor: possible event delegation: add 1 event listener to parent rather than for each profile
+       //takes all profiles and refences to a variable
       var profileShowHide = document.getElementsByClassName("profiles");
+
 
       for(var j = 0; j<profileShowHide.length; j++){
         profileShowHide[j].addEventListener("click", showHide);
@@ -53,13 +60,44 @@
           hideMessage.style.display = "none";
         }
       }
+      //attempt at event delegation below
+      // function showHide(){
+      //   console.log("**", this);
+      //   var hideMessage = this.querySelectorAll(".bodies")[0];
+      //   if(hideMessage.style.display === "none"){
+      //     hideMessage.style.display = "block";
+      //   }else{
+      //     hideMessage.style.display = "none";
+      //   }
+      // }      
+
+      // var profileContainer = document.getElementById("main");
+      // profileContainer.addEventListener("click", showHide);
+
+      // function showHide(event){
+      //   var target = event.target
+        // console.log("event.target",event.target)
+        // console.log("**", this);
+        // if (target.className !== "profiles") {
+        //   return;
+        // }
+
+      //   var hideMessage = target.querySelectorAll(".bodies")[0];
+      //   if(hideMessage.style.display === "none"){
+      //     hideMessage.style.display = "block";
+      //   }else{
+      //     hideMessage.style.display = "none";
+      //   }
+      // }
       //console.log(setNewMessage.date);
-    
+    //creates msgText element var with class, id and message string
     var msgText = document.createElement("div");
         msgText.className = "countContainer";
         msgText.id = "msgTag";
         msgText.innerHTML = "New messages: ";
         main.appendChild(msgText);
+    //creates variable that counts current emails, sets class and id, breaks horizontal
+    //in order to separate "New Messages" from count ticker
     var inboxCount = document.createElement("div");
     inboxCount.className = "countContainer";
     inboxCount.id = "inboxTag";
@@ -68,6 +106,7 @@
     createHr2.className = "HRtag";
     main.appendChild(createHr2);
 
+    //creates new parent div and class, creates div children with class and innerHTML, apends children to parent
     function addNewMsg(){
       var setNewMessage = getNewMessage();
         //console.log('hkgkgjkgjgjg',setNewMessage);
@@ -93,32 +132,38 @@
         
       var newMsgShowHide = document.getElementsByClassName("parentClass");
         //console.log(newMsgShowHide.length);
+      //creates horizontal break, tags it and appends to main
       var createHR3 = document.createElement("hr");
       createHR3.className = "HRtag";
       main.appendChild(createHR3);
+      //for loop that adds click event listener to each item in the new array, invokes callback that
+      //toggles bodies strings to show/hide them
+      // for(var k = 0; k<newMsgShowHide.length; k++){
+      //   //console.log("sfsef", newMsgShowHide.length);
+      //   newMsgShowHide[k].addEventListener("click", showHideNewMsg)
+      // }
+      //
+      // newParent.addEventListener("click", showHideNewMsg)
+      newParent.addEventListener("click", showHide)
 
-
-      for(var k = 0; k<newMsgShowHide.length; k++){
-      //console.log("sfsef", newMsgShowHide.length);
-      newMsgShowHide[k].addEventListener("click", showHideNewMsg)
-        }
-      
+      //Mutates inboxCount var inner html to the sum of the original array items + new array items
       inboxTag.innerHTML = window.geemails.length + newMsgShowHide.length;
-      }
-      
+    }
+      //calls addNewMsg function every 1 second
       setInterval(addNewMsg, 1000);
 
-      function showHideNewMsg(){
-        var hideMessage = this.querySelectorAll(".bodies")[0];
-        console.log(this);
-        if(hideMessage.style.display === "none"){
-          hideMessage.style.display = "block";
-        }else{
-          hideMessage.style.display = "none";
-        }
-        //console.log("hello");
+      //defines callback that toggles show/hide for new array items in new event listener
+      // function showHideNewMsg(){
+      //   var hideMessage = this.querySelectorAll(".bodies")[0];
+      //   //console.log(this);
+      //   if(hideMessage.style.display === "none"){
+      //     hideMessage.style.display = "block";
+      //   }else{
+      //     hideMessage.style.display = "none";
+      //   }
+      //   //console.log("hello");
 
-      }
+      // }
       };
     </script>
 	</head>
