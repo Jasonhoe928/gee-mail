@@ -8,6 +8,21 @@
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
 
+          var msgText = document.createElement("div");
+          msgText.className = "countContainer";
+          msgText.id = "msgTag";
+          msgText.innerHTML = "New messages: ";
+          main.appendChild(msgText);    
+          //creates variable that counts current emails, sets class and id, breaks horizontal
+          //in order to separate "New Messages" from count ticker
+          var inboxCount = document.createElement("div");
+          inboxCount.className = "countContainer";
+          inboxCount.id = "inboxTag";
+          main.appendChild(inboxCount);
+          var createHr2 = document.createElement("hr");
+          createHr2.className = "HRtag";
+          main.appendChild(createHr2); 
+
         //creates all profiles with classes and appends all to main
         //replaced for loop with forEach()
           geemails.forEach(function createProfile (email){
@@ -54,10 +69,10 @@
       function showHide(){
         console.log("**", this);
         var hideMessage = this.querySelectorAll(".bodies")[0];
-        if(hideMessage.style.display === "none"){
-          hideMessage.style.display = "block";
-        }else{
+        if(hideMessage.style.display === "block"){
           hideMessage.style.display = "none";
+        }else{
+          hideMessage.style.display = "block";
         }
       }
       //attempt at event delegation below
@@ -91,20 +106,7 @@
       // }
       //console.log(setNewMessage.date);
     //creates msgText element var with class, id and message string
-    var msgText = document.createElement("div");
-        msgText.className = "countContainer";
-        msgText.id = "msgTag";
-        msgText.innerHTML = "New messages: ";
-        main.appendChild(msgText);
-    //creates variable that counts current emails, sets class and id, breaks horizontal
-    //in order to separate "New Messages" from count ticker
-    var inboxCount = document.createElement("div");
-    inboxCount.className = "countContainer";
-    inboxCount.id = "inboxTag";
-    main.appendChild(inboxCount);
-    var createHr2 = document.createElement("hr");
-    createHr2.className = "HRtag";
-    main.appendChild(createHr2);
+    
 
     //creates new parent div and class, creates div children with class and innerHTML, apends children to parent
     function addNewMsg(){
@@ -147,7 +149,7 @@
       newParent.addEventListener("click", showHide)
 
       //Mutates inboxCount var inner html to the sum of the original array items + new array items
-      inboxTag.innerHTML = window.geemails.length + newMsgShowHide.length;
+      inboxTag.innerHTML = window.geemails.length - 1 + newMsgShowHide.length;
     }
       //calls addNewMsg function every 1 second
       setInterval(addNewMsg, 1000);
