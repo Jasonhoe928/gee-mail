@@ -18,6 +18,8 @@
           var inboxCount = document.createElement("div");
           inboxCount.className = "countContainer";
           inboxCount.id = "inboxTag";
+          //set inboxCount equal to 10 on initialization
+          inboxCount.innerHTML = 10;
           main.appendChild(inboxCount);
           var createHr2 = document.createElement("hr");
           createHr2.className = "HRtag";
@@ -149,7 +151,11 @@
       newParent.addEventListener("click", showHide)
 
       //Mutates inboxCount var inner html to the sum of the original array items + new array items
-      inboxTag.innerHTML = window.geemails.length - 1 + newMsgShowHide.length;
+      //Where is inboxTag initialized? 
+      //InboxTag.innerHTML = window.geemails.length  + newMsgShowHide.length;
+      //Looked at specifications, and id on elements are initialized as global variables
+      //Referenced inboxCount instead of inboxTag, as inboxTag is less readable and unstandardized
+      inboxCount.innerHTML = window.geemails.length  + newMsgShowHide.length;
     }
       //calls addNewMsg function every 1 second
       setInterval(addNewMsg, 1000);
